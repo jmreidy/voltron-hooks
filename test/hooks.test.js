@@ -117,13 +117,22 @@ describe('VoltronHooks', function () {
         }).nend(done);
     });
 
-    it('should invoke the hook with the host as \'this\'', function (done) {
+    it('should invoke the hook with the same \'this\' as the host function', function (done) {
       var hook = sinon.spy(promiseHook);
-      host.beforeTest = hook;
+      var Host = function () {};
+      Host.prototype = {
+        test: function() {
+          return Q.when();
+        }
+      };
+      spy = sinon.spy(Host.prototype, 'test');
+      VoltronHooks.defineBeforeHook(Host.prototype, 'test');
+      Host.prototype.beforeTest = hook;
+      var h = new Host();
 
-      host.test()
+      h.test()
         .then(function () {
-          expect(hook).to.have.been.calledOn(host);
+          expect(hook).to.have.been.calledOn(h);
         }).nend(done);
     });
 
@@ -179,13 +188,22 @@ describe('VoltronHooks', function () {
         }).nend(done);
     });
 
-    it('should invoke the hook with the host as \'this\'', function (done) {
+    it('should invoke the hook with the same \'this\' as the host function', function (done) {
       var hook = sinon.spy(promiseHook);
-      host.afterTest = hook;
+      var Host = function () {};
+      Host.prototype = {
+        test: function() {
+          return Q.when();
+        }
+      };
+      spy = sinon.spy(Host.prototype, 'test');
+      VoltronHooks.defineAfterHook(Host.prototype, 'test');
+      Host.prototype.afterTest = hook;
+      var h = new Host();
 
-      host.test()
+      h.test()
         .then(function () {
-          expect(hook).to.have.been.calledOn(host);
+          expect(hook).to.have.been.calledOn(h);
         }).nend(done);
     });
 

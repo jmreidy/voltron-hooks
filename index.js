@@ -38,25 +38,26 @@ var defineHook = function (host, method, precedent) {
     var _originalMethod = host[method];
 
     host[method] = function () {
+      var self = this;
       var hook = host._hooks[stage];
       var args = Array.prototype.slice.call(arguments);
       var promise;
       if (precedent.match(/before/)) {
-        promise = hook.apply(host, args);
+        promise = hook.apply(self, args);
 
         if (promise && promise.then) {
           promise.then(function () {
-            return _originalMethod.apply(host, args);
+            return _originalMethod.apply(self, args);
           }, function(err) {
             throw err;
           });
         }
       }
       else {
-        promise = _originalMethod.apply(host, args);
+        promise = _originalMethod.apply(self, args);
         if (promise && promise.then) {
           promise.then(function () {
-            return hook.apply(host, args);
+            return hook.apply(self, args);
           }, function(err) {
             throw err;
           });
