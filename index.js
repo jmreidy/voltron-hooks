@@ -39,8 +39,12 @@ var defineHook = function (host, method, precedent) {
 
     host[method] = function () {
       var self = this;
-      var hook = host._hooks[stage];
       var args = Array.prototype.slice.call(arguments);
+      var hook = host._hooks[stage];
+      if (!hook) {
+        return _originalMethod.apply(self, args);
+      }
+
       var promise;
       if (precedent.match(/before/)) {
         promise = hook.apply(self, args);

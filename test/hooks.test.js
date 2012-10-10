@@ -59,6 +59,20 @@ describe('VoltronHooks', function () {
       });
     });
 
+    describe('if a hook is undefined', function () {
+
+      it('should call the host function as normal', function (done) {
+        var host = { test: function () { return Q.when(); } };
+        VoltronHooks.defineBeforeHook(host, 'test');
+        host._hooks.beforeTest = undefined;
+
+        host.test()
+          .then(function () {
+            //Host function called
+          }).nend(done);
+      });
+    });
+
   });
 
   describe('#defineAfterHook', function () {
