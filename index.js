@@ -50,20 +50,16 @@ var defineHook = function (host, method, precedent) {
         promise = hook.apply(self, args);
 
         if (promise && promise.then) {
-          promise.then(function () {
+          promise = promise.then(function () {
             return _originalMethod.apply(self, args);
-          }, function(err) {
-            throw err;
           });
         }
       }
       else {
         promise = _originalMethod.apply(self, args);
         if (promise && promise.then) {
-          promise.then(function () {
+          promise = promise.then(function () {
             return hook.apply(self, args);
-          }, function(err) {
-            throw err;
           });
         }
       }
