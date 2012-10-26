@@ -17,8 +17,13 @@
   },
   "keywords": [
     "hooks",
-    "lifecycle"
+    "lifecycle",
+    "voltron.io"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmreidy/voltron-hooks"
+  },
   "author": "Justin Reidy <jmreidy@rzrsharp.net>",
   "license": "MIT"
 }
