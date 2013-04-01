@@ -69,7 +69,7 @@ describe('VoltronHooks', function () {
         host.test()
           .then(function () {
             //Host function called
-          }).nend(done);
+          }).nodeify(done);
       });
     });
 
@@ -128,7 +128,7 @@ describe('VoltronHooks', function () {
       host.test('a', 'b')
         .then(function () {
           expect(hook).to.have.been.calledWith('a', 'b');
-        }).nend(done);
+        }).nodeify(done);
     });
 
     it('should invoke the hook with the same \'this\' as the host function', function (done) {
@@ -147,7 +147,7 @@ describe('VoltronHooks', function () {
       h.test()
         .then(function () {
           expect(hook).to.have.been.calledOn(h);
-        }).nend(done);
+        }).nodeify(done);
     });
 
     it('should call the hook before calling the host function', function (done) {
@@ -159,7 +159,7 @@ describe('VoltronHooks', function () {
           expect(hook).to.have.been.calledOnce;
           expect(spy).to.have.been.calledOnce;
           expect(hook).to.have.been.calledBefore(spy);
-        }).nend(done);
+        }).nodeify(done);
     });
 
     it('should throw an error that prevents executing the host function', function () {
@@ -199,7 +199,7 @@ describe('VoltronHooks', function () {
       host.test('a', 'b')
         .then(function () {
           expect(hook).to.have.been.calledWith('a', 'b');
-        }).nend(done);
+        }).nodeify(done);
     });
 
     it('should invoke the hook with the same \'this\' as the host function', function (done) {
@@ -218,7 +218,7 @@ describe('VoltronHooks', function () {
       h.test()
         .then(function () {
           expect(hook).to.have.been.calledOn(h);
-        }).nend(done);
+        }).nodeify(done);
     });
 
     it('should call the hook after calling the host function', function (done) {
@@ -230,7 +230,7 @@ describe('VoltronHooks', function () {
           expect(hook).to.have.been.calledOnce;
           expect(spy).to.have.been.calledOnce;
           expect(spy).to.have.been.calledBefore(hook);
-        }).nend(done);
+        }).nodeify(done);
     });
 
     it('should throw an error after executing the host function', function () {
