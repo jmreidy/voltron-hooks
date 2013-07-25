@@ -1,5 +1,3 @@
-##NOT FOR PUBLIC USE YET!
-
 [![Build Status](https://travis-ci.org/jmreidy/VoltronHooks.png)](https://travis-ci.org/jmreidy/VoltronHooks)
 
 VoltronHooks allows you to add async, promise based lifecycle hooks (before/after calls)
