@@ -1,6 +1,6 @@
 {
   "name": "voltron-hooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A helper package for adding lifecycle hooks before or after method calls on an object.",
   "main": "index.js",
   "scripts": {
